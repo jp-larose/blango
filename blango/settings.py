@@ -18,7 +18,7 @@ import dj_database_url
 class Dev(Configuration):
 
     ADMINS = [("Ricky", "ricky@abarrach.com"), ("Joël", "jplarose@abarrach.com")]
-
+    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
     # Build paths inside the project like this: BASE_DIR / 'subdir'.
     BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -116,6 +116,8 @@ class Dev(Configuration):
     }
 
     AUTH_USER_MODEL = "blango_auth.User"
+
+    ACCOUNT_ACTIVATION_DAYS = 7
 
     # Password validation
     # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
