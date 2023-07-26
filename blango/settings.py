@@ -17,6 +17,8 @@ import dj_database_url
 
 class Dev(Configuration):
 
+    SITE_ID = 1
+
     ADMINS = [("Ricky", "ricky@abarrach.com"), ("Joël", "jplarose@abarrach.com")]
     EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
     # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -50,12 +52,17 @@ class Dev(Configuration):
         'django.contrib.contenttypes',
         'django.contrib.sessions',
         'django.contrib.messages',
+        'django.contrib.sites',
         'django.contrib.staticfiles',
         'crispy_forms',
         'crispy_bootstrap5',
         'blango_auth',
         'blog',
         'debug_toolbar',
+        'allauth',
+        'allauth.account',
+        'allauth.socialaccount',
+        'allauth.socialaccount.providers.google',
     ]
 
     MIDDLEWARE = [
@@ -118,6 +125,13 @@ class Dev(Configuration):
     AUTH_USER_MODEL = "blango_auth.User"
 
     ACCOUNT_ACTIVATION_DAYS = 7
+
+    ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+    ACCOUNT_EMAIL_REQUIRED = True
+    ACCOUNT_USERNAME_REQUIRED = False
+    ACCOUNT_AUTHENTICATION_METHOD = "email"
+    ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https"
+
 
     # Password validation
     # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
